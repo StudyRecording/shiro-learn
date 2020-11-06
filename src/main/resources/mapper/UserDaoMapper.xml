@@ -11,4 +11,21 @@
     <select id="selectByUsername" parameterType="java.lang.String" resultType="com.example.demo.entity.User">
         select * from t_users where username = #{username}
     </select>
+
+    <resultMap id="userRoleMap" type="com.example.demo.entity.User">
+        <id column="uid" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <collection property="roles" javaType="java.util.List" ofType="com.example.demo.entity.Roles" >
+            <id column="rid" jdbcType="INTEGER" property="id"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+        </collection>
+    </resultMap>
+    <select id="selectUserAndRolesByUsername" parameterType="java.lang.String" resultMap="userRoleMap">
+        select tu.id as uid, tu.*, tr.id as rid, tr.name as name from t_users tu
+        left join t_user_role tur on tu.id = tur.user_id
+        left join t_roles tr on tr.id = tur.role_id
+        where tu.username = #{username}
+    </select>
 </mapper>

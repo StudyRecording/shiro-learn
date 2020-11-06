@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.RoleDao">
+
+    <resultMap id="resultMap" type="com.example.demo.entity.Roles">
+        <id column="rid" property="id"/>
+        <result column="rname" property="name"/>
+        <collection property="perms" ofType="com.example.demo.entity.Perms" javaType="java.util.List">
+            <id column="pid" property="id"/>
+            <result column="pname" property="name"/>
+            <result column="purl" property="url"/>
+        </collection>
+    </resultMap>
+    <select id="selectRoleAndPermByRoleId" parameterType="java.lang.Integer" resultMap="resultMap">
+        select tr.id as rid, tr.name as rname, tp.id as pid, tp.name as pname, tp.url as pu
+        from t_roles tr
+        left join t_role_perm trp on tr.id = trp.role_id
+        left join t_perms tp on tp.id = trp.perm_id
+        where tr.id = #{id}
+    </select>
+</mapper>

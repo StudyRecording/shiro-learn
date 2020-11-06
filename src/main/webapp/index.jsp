@@ -25,6 +25,15 @@
                 <shiro:hasPermission name="user:update:*">
                     <li><a>更改</a></li>
                 </shiro:hasPermission>
+                <shiro:hasPermission name="product:×:*">
+                    <li><a>商品</a></li>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="order:update:*">
+                    <li><a>订单更新</a></li>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="order:×:*">
+                    <li><a>订单</a></li>
+                </shiro:hasPermission>
             </ul>
 
         </li>

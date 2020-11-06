@@ -1,12 +1,15 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.UserDao;
+import com.example.demo.entity.Roles;
 import com.example.demo.entity.User;
 import com.example.demo.utl.SaltUtil;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,5 +37,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectByUsername(String username) {
         return userDao.selectByUsername(username);
+    }
+
+    @Override
+    public User selectUserAndRolesByUsername(String username) {
+
+        return userDao.selectUserAndRolesByUsername(username);
     }
 }

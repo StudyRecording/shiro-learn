@@ -9,17 +9,13 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@NoArgsConstructor
+public class Roles {
 
     private Integer id;
 
-    private String username;
+    private String name;
 
-    private String password;
-
-    private String salt;
-
-    private List<Roles> roles;
+    private List<Perms> perms;
 }

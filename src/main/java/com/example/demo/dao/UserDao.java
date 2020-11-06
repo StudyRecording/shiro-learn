@@ -3,8 +3,10 @@ package com.example.demo.dao;
 import com.example.demo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 @Mapper
+@Repository
 public interface UserDao {
 
     /**
@@ -20,4 +22,11 @@ public interface UserDao {
      * @return
      */
     User selectByUsername(@Param("username") String username);
+
+    /**
+     * 通过用户名查询用户信息和角色信息
+     * @param username
+     * @return
+     */
+    User selectUserAndRolesByUsername(@Param("username") String username);
 }

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserService {
 
@@ -17,4 +18,6 @@ public interface UserService {
      * @return
      */
     User selectByUsername(String username);
+
+    User selectUserAndRolesByUsername(@Param("username") String username);
 }
