@@ -4,6 +4,7 @@ import com.example.demo.entity.Roles;
 import com.example.demo.entity.User;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
+import com.example.demo.shiro.salt.MyByteSource;
 import com.example.demo.utl.ApplicationContextUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -14,6 +15,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.SimpleByteSource;
 
 import java.util.List;
 
@@ -62,12 +64,13 @@ public class CustomerRealm extends AuthorizingRealm {
         String username = (String) token.getPrincipal();
 
         UserService userService = (UserService) ApplicationContextUtil.getBean("userServiceImpl");
-
+        System.out.println("认证");
         User user = userService.selectByUsername(username);
         if (user != null) {
             return new SimpleAuthenticationInfo(username,
                     user.getPassword(),
-                    ByteSource.Util.bytes(user.getSalt()),
+                    // ByteSource.Util.bytes(user.getSalt()),
+                    new MyByteSource(user.getSalt()),
                     this.getName());
         }
 

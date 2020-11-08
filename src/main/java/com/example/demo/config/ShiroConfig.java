@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.shiro.cache.RedisCacheManager;
 import com.example.demo.shiro.realm.CustomerRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
@@ -47,6 +48,15 @@ public class ShiroConfig {
         credentialsMatcher.setHashAlgorithmName("md5");
         credentialsMatcher.setHashIterations(1024);
         customerRealm.setCredentialsMatcher(credentialsMatcher);
+
+        // 设置缓存
+        customerRealm.setCachingEnabled(true);
+        customerRealm.setCacheManager(new RedisCacheManager());
+        customerRealm.setAuthenticationCachingEnabled(true);
+        customerRealm.setAuthenticationCacheName("authenticationCache");
+        customerRealm.setAuthorizationCachingEnabled(true);
+        customerRealm.setAuthorizationCacheName("authorizationCache");
+
         return customerRealm;
     }
 }
