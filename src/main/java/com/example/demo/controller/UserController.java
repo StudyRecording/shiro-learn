@@ -19,6 +19,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
     @RequestMapping("/register")
     public String register(User user) {
         User add = userService.add(user);
@@ -28,6 +33,10 @@ public class UserController {
         return "redirect:/register.jsp";
     }
 
+    /**
+     * 退出登录
+     * @return
+     */
     @RequestMapping("/logout")
     public String logout() {
         Subject subject = SecurityUtils.getSubject();
@@ -35,7 +44,12 @@ public class UserController {
         return "redirect:/login.jsp";
     }
 
-
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping("/login")
     public String login(String username, String password) {
 

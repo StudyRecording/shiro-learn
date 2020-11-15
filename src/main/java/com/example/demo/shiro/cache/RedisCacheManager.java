@@ -4,6 +4,9 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 
+/**
+ * 实现Redis缓存
+ */
 public class RedisCacheManager implements CacheManager {
 
     @Override

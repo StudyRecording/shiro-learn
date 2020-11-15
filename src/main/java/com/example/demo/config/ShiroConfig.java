@@ -5,6 +5,7 @@ import com.example.demo.shiro.realm.CustomerRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * shiro 配置类
+ */
 @Configuration
 public class ShiroConfig {
 
@@ -20,6 +24,8 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
+
+
         Map<String, String> map = new HashMap<>();
         map.put("/register.jsp", "anon");
         map.put("/login.jsp", "anon");
@@ -27,8 +33,6 @@ public class ShiroConfig {
         map.put("/user/register", "anon");
         map.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
-
-        // shiroFilterFactoryBean.setLoginUrl("./login.jsp");
 
         return shiroFilterFactoryBean;
     }

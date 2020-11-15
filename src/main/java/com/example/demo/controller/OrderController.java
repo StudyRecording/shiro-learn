@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/order")
 public class OrderController {
 
-
+    /**
+     * 测试授权功能
+     * @return
+     */
     @RequestMapping("/find")
 //    @RequiresRoles(value = {"admin"})
     @RequiresPermissions("user:*:*")

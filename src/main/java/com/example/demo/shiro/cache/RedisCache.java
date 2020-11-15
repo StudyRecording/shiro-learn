@@ -10,6 +10,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.util.Collection;
 import java.util.Set;
 
+/**
+ * 为了防止多次不必要的登录认证，实现Redis缓存
+ * @param <K>
+ * @param <V>
+ */
 public class RedisCache<K, V> implements Cache<K, V> {
 
     private String cacheName;

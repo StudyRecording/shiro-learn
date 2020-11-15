@@ -2,6 +2,9 @@ package com.example.demo.utl;
 
 import java.util.Random;
 
+/**
+ * 生成salt的工具类
+ */
 public class SaltUtil {
 
     public static String getSalt(int n) {
@@ -18,6 +21,7 @@ public class SaltUtil {
 
         return sb.toString();
     }
+
 
     public static void main(String[] args) {
         System.out.println(getSalt(4));

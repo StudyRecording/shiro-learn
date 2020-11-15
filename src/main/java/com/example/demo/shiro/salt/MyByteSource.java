@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 
+/**
+ * 用与认证时salt使用ByteSource不能正常序列化的问题
+ */
 public class MyByteSource extends SimpleByteSource implements Serializable {
 
 

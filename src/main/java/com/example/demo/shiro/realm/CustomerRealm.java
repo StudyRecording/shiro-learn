@@ -74,10 +74,6 @@ public class CustomerRealm extends AuthorizingRealm {
                     this.getName());
         }
 
-//        if ("xiaochen".equals(username)) {
-//            return new SimpleAuthenticationInfo(username, "123", this.getName());
-//        }
-
         return null;
     }
 }
